@@ -1,14 +1,14 @@
 <template>
 <div class="home">
   <div class="header">
-    <h1>ようこそ</h1>
+    <h1 @click="random">ようこそ</h1>
     <h2>Share With Driverへ</h2>
   </div>
   <div class="main">
     <section class="left">
       <div class="call-left">
       <h1>近くの人と話す</h1>
-      <div class="button-left">
+      <div @click="random" class="button-left">
         <a @click="transition()" href="#" class="btn btn-flat"><span>通話開始</span></a>
       </div>
       <p class="caution-left">※位置情報から近くの人と通話を開始します。</p>
@@ -24,13 +24,14 @@
       </div>
     </section>
   </div>
+  <div>
+    <button class="idButton" @click="createId"></button>
+    <p>あなたのID：{{ randomId }}</p>
+  </div>
 </div>
 
 </template>
 
-<script>
-
-</script>
 
 <style scoped>
 
@@ -141,8 +142,6 @@ a.btn-flat {
   padding: 1.5rem 6rem;
   color: #000;
   background: #DE8042;
-  width: 500px;
-  height: 300px;
   border-radius: 30px;
 }
 
@@ -185,6 +184,11 @@ a.btn-flat:hover:before {
     text-align: center;
     color: #000;
     padding-top: 20px;
+}
+
+.idButton {
+  width: 100px;
+  height: 10px;
 }
 
 /*スマホ対応*/
@@ -237,8 +241,8 @@ a.btn-flat:hover:before {
 
   .button-left a,
   .button-right a {
-    width: 300px;
-    height: 140px;
+    width: 130px;
+    height: 80px;
     border-radius: 50px;
   }
 
@@ -258,15 +262,26 @@ a.btn-flat:hover:before {
     font-size: 26px;
     text-align: center;
   }
+
+
 }
 </style>
 
 <script>
 export default {
+  data() {
+    return {
+      randomId: ""
+    }
+  },
   methods: {
     transition() {
       this.$router.push({ name: "Load" });
+    },
+      createId() {
+      this.randomId = Math.random();
+      console.log( this.randomId );
     }
   }
-};
+}
 </script>
