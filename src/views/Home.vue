@@ -277,11 +277,12 @@ export default {
   methods: {
     transition() {
       this.$router.push({ name: "Load" });
+    }
     },
-      createId() {
+    created() {
+      createId();
       this.randomId = Math.random();
       console.log( this.randomId );
-    }
   }
 }
 </script>
